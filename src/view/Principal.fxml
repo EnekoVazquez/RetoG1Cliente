@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #DCDCDC;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Button layoutX="377.0" layoutY="414.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="142.0" style="-fx-background-color: #64FEBA;" text="Exit">
+         <font>
+            <Font size="21.0" />
+         </font>
+      </Button>
+      <Label layoutX="153.0" layoutY="110.0" text="Has entrado correctamente ">
+         <font>
+            <Font size="48.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="375.0" layoutY="225.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../Downloads/889221.png" />
+         </image>
+      </ImageView>
+   </children>
+</Pane>

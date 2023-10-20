@@ -16,7 +16,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 /**
@@ -29,10 +31,16 @@ public class SignInController {
     private Stage stage;
 
     @FXML
-    private TextField txtEmail, txtPasswd;
+    private TextField txtEmail;
+    
+    @FXML
+    private PasswordField pswfPasswd;
 
     @FXML
     private Button btnLogin, btnSignUp;
+    
+    @FXML
+    private Image pngImage;
 
     @FXML
     private Label lblSignIn, lblError;
@@ -61,10 +69,13 @@ public class SignInController {
 
         //El textField E-mail (id= txtEmail) y el passwordField password (id =txtPasswd) están habilitados.
         txtEmail.setDisable(false);
-        txtPasswd.setDisable(false);
+        pswfPasswd.setDisable(false);
 
         //El título de la ventana se llama “Sign In”.
         stage.setTitle("SIGN IN");
+        
+        //La imagen Perfil (id= pngPerfil) siempre está habilitada 
+        
 
         //El botón login (id =btnLogin) está habilitado. El botón SignUp (id = btnSignUp)está habilitado.
         btnLogin.setDisable(false);
@@ -93,7 +104,7 @@ public class SignInController {
         try {
             //Validar si los textFields están informados
             //Si no están informados se lanzará la excepción EmptyTextFieldsException
-            if (this.txtEmail.getText().isEmpty() || this.txtPasswd.getText().isEmpty()) {
+            if (this.txtEmail.getText().isEmpty() || this.pswfPasswd.getText().isEmpty()) {
                 throw new Exception("Campos no informados");
             }
             //Validar que el email tiene un patrón válido
@@ -103,7 +114,7 @@ public class SignInController {
             }
             //Validar si la contraseña contiene mayúsculas, minúsculas y al menos un número,
             //la longitud tiene que ser de un mínimo de 8 dígitos.
-            String password = this.txtPasswd.getText();
+            String password = this.pswfPasswd.getText();
             if (!(PASSWORD_PATTERN.matcher(password).matches())) {
                 throw new Exception("Contraseña incorrecta");
             }else{

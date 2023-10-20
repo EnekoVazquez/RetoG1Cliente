@@ -5,8 +5,7 @@ package application;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
-
+import controller.SignInController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -21,10 +20,12 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+        
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/SignIn.fxml"));
+        Parent root = (Parent) loader.load();
+        SignInController signIn = ((SignInController) loader.getController());
+        signIn.setStage(stage);
+        signIn.initStage(root);
     }
 
     /**

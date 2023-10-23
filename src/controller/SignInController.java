@@ -5,6 +5,11 @@
  */
 package controller;
 
+import exception.CredentialErrorException;
+import exception.EmptyTextFieldsException;
+import exception.FormatErrorException;
+import exception.LoginException;
+import exception.ServerErrorException;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -14,6 +19,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -22,6 +28,7 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 /**
+ * Esta clase es la la controladora de la ventana de Sign in
  *
  * @author Josu.
  */
@@ -32,13 +39,13 @@ public class SignInController {
 
     @FXML
     private TextField txtEmail;
-    
+
     @FXML
     private PasswordField pswfPasswd;
 
     @FXML
     private Button btnLogin, btnSignUp;
-    
+
     @FXML
     private Image pngImage;
 
@@ -73,10 +80,8 @@ public class SignInController {
 
         //El título de la ventana se llama “Sign In”.
         stage.setTitle("SIGN IN");
-        
-        //La imagen Perfil (id= pngPerfil) siempre está habilitada 
-        
 
+        //La imagen Perfil (id= pngPerfil) siempre está habilitada 
         //El botón login (id =btnLogin) está habilitado. El botón SignUp (id = btnSignUp)está habilitado.
         btnLogin.setDisable(false);
         btnSignUp.setDisable(false);
@@ -105,26 +110,34 @@ public class SignInController {
             //Validar si los textFields están informados
             //Si no están informados se lanzará la excepción EmptyTextFieldsException
             if (this.txtEmail.getText().isEmpty() || this.pswfPasswd.getText().isEmpty()) {
-                throw new Exception("Campos no informados");
+                throw new EmptyTextFieldsException("Campos no informados");
             }
             //Validar que el email tiene un patrón válido
             String email = this.txtEmail.getText();
             if (!(EMAIL_PATTERN.matcher(email).matches())) {
-                throw new Exception("formato email incorrecto ");
+                throw new FormatErrorException("Formato de email incorrecto ");
             }
             //Validar si la contraseña contiene mayúsculas, minúsculas y al menos un número,
             //la longitud tiene que ser de un mínimo de 8 dígitos.
             String password = this.pswfPasswd.getText();
             if (!(PASSWORD_PATTERN.matcher(password).matches())) {
-                throw new Exception("Contraseña incorrecta");
-            }else{
-                System.out.println("patata");
+                throw new FormatErrorException("Formato de Contraseña incorrecta");
+
             }
+            System.out.println("pepe");
+            
 
-        } catch (Exception e) {
+        } catch (FormatErrorException | EmptyTextFieldsException le) {
 
-            lblError.setVisible(true);
-            lblError.setText(e.getMessage());
+            new Alert(Alert.AlertType.INFORMATION, le.getMessage()).showAndWait();
+
+        } catch (CredentialErrorException cre) {
+            
+            new Alert(Alert.AlertType.INFORMATION, cre.getMessage()).showAndWait();
+
+        }catch (Exception e) {
+            
+            new Alert(Alert.AlertType.INFORMATION, e.getMessage()).showAndWait();
 
         }
 

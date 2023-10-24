@@ -22,6 +22,8 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import model.ControllerFactory;
+import model.Sign;
 import model.User;
 
 /**
@@ -129,6 +131,10 @@ public class SignUpController {
      */
     @FXML
     protected static final Logger LOGGER = Logger.getLogger("SignUpController");
+    /**
+    * Declaramos la interfaz
+    */
+    private Sign interf;
 
     /**
      * Inicializa la ventana de registro con el contenido proporcionado.
@@ -183,6 +189,10 @@ public class SignUpController {
         btnCancel.setOnAction(this::handleButtonCancel);
 
         stage.show();
+        
+        //Invocamos a la factoria
+        ControllerFactory fact = new ControllerFactory();
+        interf = fact.getSocket();
     }
 
     /**
@@ -228,6 +238,10 @@ public class SignUpController {
             user.setDireccion(this.txtStreet.getText());
             user.setCodigoPostal(Integer.parseInt(this.txtZip.getText()));
             user.setTelefono(Integer.parseInt(this.txtZip.getText()));
+            interf.getExecuteSignUp(user);
+            
+            new Alert(Alert.AlertType.INFORMATION, "Usuario registrado").showAndWait();
+
 
         } catch (EmptyTextFieldsException | FormatErrorException e) {
             new Alert(Alert.AlertType.INFORMATION,

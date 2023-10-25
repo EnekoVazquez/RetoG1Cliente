@@ -13,7 +13,7 @@ public class ControllerFactory {
 
     public Sign getSocket() {
         Sign sign;
-        sign = (Sign) new SignInClient();
+        sign = new SignInClient();
         return sign;
     }
 }

@@ -39,7 +39,7 @@ public class SignUpController {
      * Campo de texto para la entrada del correo electrónico del usuario.
      */
     @FXML
-    private TextField txtEmail;
+    public TextField txtEmail;
 
     /**
      * Campo de texto para la entrada del nombre del usuario.
@@ -107,12 +107,6 @@ public class SignUpController {
      */
     @FXML
     private Button btnCancel;
-
-    /**
-     * Etiqueta para mostrar mensajes de error.
-     */
-    @FXML
-    private Label lblError;
 
     /**
      * Expresión regular para validar el formato del correo electrónico.
@@ -193,6 +187,7 @@ public class SignUpController {
         //Invocamos a la factoria
         ControllerFactory fact = new ControllerFactory();
         interf = fact.getSocket();
+        
     }
 
     /**

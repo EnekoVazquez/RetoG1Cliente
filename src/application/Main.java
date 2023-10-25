@@ -26,6 +26,7 @@ public class Main extends Application {
         SignInController signIn = ((SignInController) loader.getController());
         signIn.setStage(stage);
         signIn.initStage(root);
+        
     }
 
     /**

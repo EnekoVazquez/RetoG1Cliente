@@ -65,7 +65,7 @@ public class SignInController {
     private PasswordField pswfPasswd;
 
     /**
-     * Botón para iniciar sesión.
+     * Botón para iniciar sesión. 
      */
     @FXML
     private Button btnLogin;

@@ -9,7 +9,6 @@ import static model.MessageType.ERROR_RESPONSE;
 import static model.MessageType.OK_RESPONSE;
 import static model.MessageType.USER_ALREADY_EXISTS_RESPONSE;
 import static model.MessageType.USER_NOT_FOUND_RESPONSE;
-import static model.MessageType.PASSWORD_ERROR_RESPONSE;
 import exception.CredentialErrorException;
 import exception.ServerErrorException;
 import exception.UserAlreadyExistsException;
@@ -44,7 +43,7 @@ public class SignInClient implements Sign {
     /**
      * Dirección IP del host para el servidor.
      */
-    private static final String HOST = ResourceBundle.getBundle("model.Config").getString("Ip");
+    private static final String HOST = ResourceBundle.getBundle("model.Config").getString("ip");
     
     /**
      * Enumeración que representa diferentes tipos de mensajes.
@@ -146,9 +145,6 @@ public class SignInClient implements Sign {
                     throw new UserNotFoundException("El usuario no ha sido encontrado");
                 case ERROR_RESPONSE:
                     throw new ServerErrorException("Ha ocurrido un error en el servidor");
-                case PASSWORD_ERROR_RESPONSE:
-                    //Eg: Apunte para preguntar mañana que poner aqui.
-                    throw new CredentialErrorException("The password is incorrect");
             }
 
         } catch (ClassNotFoundException | IOException ex) {

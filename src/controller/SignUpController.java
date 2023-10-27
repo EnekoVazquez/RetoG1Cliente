@@ -225,7 +225,7 @@ public class SignUpController {
                 throw new FormatErrorException("Las contrasenias no son iguales");
             }
 
-            User user = new User();
+            User user = new User(); 
             user.setEmail(this.txtEmail.getText());
             user.setPassword(this.txtPasswd.getText());
             user.setNombre(this.txtName.getText());

@@ -88,11 +88,7 @@ public class PrincipalController {
     private void handleExitButtonAction(ActionEvent event) {
         try {
 
-            //El campo de texto está deshabilitado
-            lblTexto.setDisable(true);
-
-            //El botón está habilitado
-            btnExit.setDisable(false);
+         
             //Con esto vamos a crear una ventana de confirmación al pulsar el botón de salir
             Alert ventanita = new Alert(Alert.AlertType.CONFIRMATION);
             ventanita.setHeaderText(null);
@@ -118,6 +114,7 @@ public class PrincipalController {
      */
     public void getUser(User user) {
         this.user = user;
+        
     }
 
 }

@@ -16,16 +16,21 @@
             <Font size="19.0" />
          </font>
       </TextField>
-      <Label id="lblSignIn" fx:id="lblSignIn" layoutX="393.0" layoutY="37.0" prefHeight="71.0" prefWidth="114.0" text="Sign In">
+      <PasswordField fx:id="pswfPasswd" layoutX="183.0" layoutY="342.0" prefHeight="42.0" prefWidth="534.0" promptText="Password">
          <font>
-            <Font size="36.0" />
+            <Font size="19.0" />
          </font>
-      </Label>
+      </PasswordField>
       <Button id="btnLogin" fx:id="btnLogin" layoutX="183.0" layoutY="397.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="142.0" style="-fx-background-color: #64FEBA;" text="Login">
          <font>
             <Font size="21.0" />
          </font>
       </Button>
+      <Label id="lblSignIn" fx:id="lblSignIn" layoutX="393.0" layoutY="37.0" prefHeight="71.0" prefWidth="114.0" text="Sign In">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </Label>
       <Button id="btnSignUp" fx:id="btnSignUp" layoutX="575.0" layoutY="397.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="142.0" style="-fx-background-color: #64FEBA;" text="Sign Up">
          <font>
             <Font size="21.0" />
@@ -36,10 +41,5 @@
             <Image url="@../picture/perfil.png" />
          </image>
       </ImageView>
-      <PasswordField fx:id="pswfPasswd" layoutX="183.0" layoutY="342.0" prefHeight="42.0" prefWidth="534.0" promptText="Password">
-         <font>
-            <Font size="19.0" />
-         </font>
-      </PasswordField>
    </children>
 </Pane>

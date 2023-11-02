@@ -126,8 +126,8 @@ public class SignUpController {
     @FXML
     protected static final Logger LOGGER = Logger.getLogger("SignUpController");
     /**
-    * Declaramos la interfaz
-    */
+     * Declaramos la interfaz
+     */
     private Sign interf;
 
     /**
@@ -183,11 +183,11 @@ public class SignUpController {
         btnCancel.setOnAction(this::handleButtonCancel);
 
         stage.show();
-        
+
         //Invocamos a la factoria
         ControllerFactory fact = new ControllerFactory();
         interf = fact.getSocket();
-        
+
     }
 
     /**
@@ -225,18 +225,26 @@ public class SignUpController {
                 throw new FormatErrorException("Las contrasenias no son iguales");
             }
 
-            User user = new User(); 
+            User user = new User();
             user.setEmail(this.txtEmail.getText());
             user.setPassword(this.txtPasswd.getText());
             user.setNombre(this.txtName.getText());
-            user.setCiudad(this.txtCity.getText());
-            user.setDireccion(this.txtStreet.getText());
-            user.setCodigoPostal(Integer.parseInt(this.txtZip.getText()));
-            user.setTelefono(Integer.parseInt(this.txtZip.getText()));
+            if (!txtCity.getText().isEmpty()) {
+                user.setCiudad(txtCity.getText());
+            }
+            if (!txtStreet.getText().isEmpty()) {
+                user.setDireccion(txtStreet.getText());
+            }
+            if (!txtZip.getText().isEmpty()) {
+                user.setCodigoPostal(Integer.parseInt(txtZip.getText()));
+            }
+            if (!phoneNumber.getText().isEmpty()) {
+                user.setTelefono(Integer.parseInt(phoneNumber.getText()));
+            }
+           
             interf.getExecuteSignUp(user);
+             new Alert(Alert.AlertType.INFORMATION, "Usuario registrado").showAndWait();
             
-            new Alert(Alert.AlertType.INFORMATION, "Usuario registrado").showAndWait();
-
 
         } catch (EmptyTextFieldsException | FormatErrorException e) {
             new Alert(Alert.AlertType.INFORMATION,

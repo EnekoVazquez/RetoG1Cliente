@@ -22,46 +22,49 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * La clase SignInClient implementa la interfaz code Sign
- * y proporciona métodos para manejar las operaciones de registro e inicio de sesión
- * conectándose a un servidor.
- * 
+ * La clase SignInClient implementa la interfaz code Sign y proporciona métodos
+ * para manejar las operaciones de registro e inicio de sesión conectándose a un
+ * servidor.
+ *
  * @author Egoitz.
  */
 public class SignInClient implements Sign {
-    
+
     /**
      * ResourceBundle para parámetros de configuración.
      */
     private static final ResourceBundle RETO1 = ResourceBundle.getBundle("model.Config");
-    
+
     /**
      * Puerto utilizado para la comunicación con el servidor.
      */
     private static final int PUERTO = Integer.parseInt(RETO1.getString("PORT"));
-    
+
     /**
      * Dirección IP del host para el servidor.
      */
     private static final String HOST = ResourceBundle.getBundle("model.Config").getString("ip");
-    
+
     /**
      * Enumeración que representa diferentes tipos de mensajes.
      */
     MessageType mt;
-    
+
     /**
-     * Instancia de Encapsulator para envolver la información del usuario y los mensajes.
+     * Instancia de Encapsulator para envolver la información del usuario y los
+     * mensajes.
      */
     private Encapsulator encapsu = null;
 
     /**
-     * Realiza el proceso de registro del usuario conectándose al servidor 'SignerServer'.
+     * Realiza el proceso de registro del usuario conectándose al servidor
+     * 'SignerServer'.
      *
      * @param user El objeto de tipo User que se va a registrar.
      * @return El usuario registrado.
      * @throws ServerErrorException Se lanza si hay un error en el servidor.
-     * @throws UserAlreadyExistsException Se lanza si el usuario ya existe en la base de datos.
+     * @throws UserAlreadyExistsException Se lanza si el usuario ya existe en la
+     * base de datos.
      */
     @Override
     public User getExecuteSignUp(User user) throws ServerErrorException, UserAlreadyExistsException {
@@ -69,6 +72,7 @@ public class SignInClient implements Sign {
         MessageType mst;
         ObjectOutputStream oos = null;
         ObjectInputStream ois = null;
+       // ois = new ObjectInputStream(ois);
 
         try {
             //Enviamos el objecto encapsulado al servidor
@@ -88,7 +92,7 @@ public class SignInClient implements Sign {
             oos.close();
             ois.close();
             sokCliente.close();
-            
+
             //Dependiendo de el mensaje que reciva lanza o escribe un mensaje nuevo
             switch (encapsu.getMessage()) {
                 case OK_RESPONSE:
@@ -104,14 +108,17 @@ public class SignInClient implements Sign {
         }
         return user;
     }
+
     /**
-     * Realiza el proceso de inicio de sesión del usuario conectándose al servidor 'SignerServer'.
+     * Realiza el proceso de inicio de sesión del usuario conectándose al
+     * servidor 'SignerServer'.
      *
      * @param user El objeto de tipo User para el inicio de sesión.
      * @return El usuario que ha iniciado sesión.
      * @throws ServerErrorException Se lanza si hay un error en el servidor.
      * @throws CredentialErrorException Se lanza si la contraseña es incorrecta.
-     * @throws UserNotFoundException Se lanza si el usuario no se encuentra en la base de datos.
+     * @throws UserNotFoundException Se lanza si el usuario no se encuentra en
+     * la base de datos.
      */
     @Override
     public User getExecuteSignIn(User user) throws ServerErrorException, CredentialErrorException, UserNotFoundException {
@@ -129,14 +136,14 @@ public class SignInClient implements Sign {
             oos.writeObject(encapsu);
 
             //Recibimos el objeto encapsulado del servidor
-            ois = new ObjectInputStream(sokCliente.getInputStream());
+            //ois = new ObjectInputStream(sokCliente.getInputStream());
             encapsu = (Encapsulator) ois.readObject();
             user = encapsu.getUser();
             int decision = encapsu.getMessage().ordinal();
             oos.close();
             ois.close();
             sokCliente.close();
-            
+
             //Dependiendo de el mensaje que reciba lanza o escribe un mensaje nuevo
             switch (encapsu.getMessage()) {
                 case OK_RESPONSE:

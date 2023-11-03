@@ -10,6 +10,8 @@ import exception.EmptyTextFieldsException;
 import exception.FormatErrorException;
 import exception.LoginException;
 import exception.ServerErrorException;
+import exception.UserAlreadyExistsException;
+import exception.UserNotFoundException;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -176,17 +178,26 @@ public class SignInController {
             //Validar si los textFields están informados
             //Si no están informados se lanzará la excepción EmptyTextFieldsException
             if (this.txtEmail.getText().isEmpty() || this.pswfPasswd.getText().isEmpty()) {
+                //Esta parte de aqui hemos estimado retirarla ya que hemos notado que es una mala practica y poco usable pese a que funcione y estuviera en el diseño
+                //txtEmail.setText("");
+                //pswfPasswd.setText("");
                 throw new EmptyTextFieldsException("Campos no informados");
             }
             //Validar que el email tiene un patrón válido
             String email = this.txtEmail.getText();
             if (!(EMAIL_PATTERN.matcher(email).matches())) {
+                //Esta parte de aqui hemos estimado retirarla ya que hemos notado que es una mala practica y poco usable pese a que funcione y estuviera en el diseño
+                //txtEmail.setText("");
+                //pswfPasswd.setText("");
                 throw new FormatErrorException("Formato de email incorrecto ");
             }
             //Validar si la contraseña contiene mayúsculas, minúsculas y al menos un número,
             //la longitud tiene que ser de un mínimo de 8 dígitos.
             String password = this.pswfPasswd.getText();
             if (!(PASSWORD_PATTERN.matcher(password).matches())) {
+                //Esta parte de aqui hemos estimado retirarla ya que hemos notado que es una mala practica y poco usable pese a que funcione y estuviera en el diseño
+                //txtEmail.setText("");
+                //pswfPasswd.setText("");
                 throw new FormatErrorException("Formato de Contraseña incorrecta");
 
             }
@@ -207,13 +218,16 @@ public class SignInController {
 
             PrincipalController principalController = ((PrincipalController) loader.getController());
 
-            principalController.initStage(root, user);
+            principalController.initStage(root, interf.getExecuteSignIn(user));
 
         } catch (FormatErrorException | EmptyTextFieldsException le) {
 
             new Alert(Alert.AlertType.INFORMATION, le.getMessage()).showAndWait();
 
-        } catch (Exception e) {
+        } catch (UserNotFoundException e){
+            new Alert(Alert.AlertType.INFORMATION, e.getMessage()).showAndWait();
+        }
+        catch (Exception e) {
 
             new Alert(Alert.AlertType.INFORMATION, e.getMessage()).showAndWait();
 

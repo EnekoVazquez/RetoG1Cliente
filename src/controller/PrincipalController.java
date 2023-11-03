@@ -20,6 +20,7 @@ import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import model.User;
 
+
 /**
  *
  * @author Eneko y Egoitz.
@@ -75,9 +76,11 @@ public class PrincipalController {
         stage.setScene(scene);
         stage.setTitle("PRINCIPAL");
 
+        btnExit.setOnAction(this::handleExitButtonAction);
+        
         stage.show();
       
-        lblTexto.setText(lblTexto.getText() + " " + user.getNombre());
+        lblTexto.setText(lblTexto.getText() + " " + (user.getNombre()));
     }
 
     /**

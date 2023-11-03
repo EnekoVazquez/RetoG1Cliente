@@ -203,6 +203,15 @@ public class SignUpController {
             //Si no están informados alguno de los campos saldrá un mensaje de error.
             if (this.txtEmail.getText().trim().isEmpty() || this.txtName.getText().trim().isEmpty()
                     || this.txtPasswd.getText().trim().isEmpty() || this.txtConfirmPasswd.getText().trim().isEmpty()) {
+                //Esta parte de aqui hemos estimado retirarla ya que hemos notado que es una mala practica y poco usable pese a que funcione y estuviera en el diseño
+                //txtEmail.setText("");
+                //txtName.setText("");
+                //txtPasswd.setText("");
+                //txtConfirmPasswd.setText("");
+                //txtStreet.setText("");
+                //txtCity.setText("");
+                //txtZip.setText("");
+                //phoneNumber.setText("");
                 throw new EmptyTextFieldsException("Campos no informados");
             }
 
@@ -241,10 +250,9 @@ public class SignUpController {
             if (!phoneNumber.getText().isEmpty()) {
                 user.setTelefono(Integer.parseInt(phoneNumber.getText()));
             }
-           
+
             interf.getExecuteSignUp(user);
-             new Alert(Alert.AlertType.INFORMATION, "Usuario registrado").showAndWait();
-            
+            new Alert(Alert.AlertType.INFORMATION, "Usuario registrado").showAndWait();
 
         } catch (EmptyTextFieldsException | FormatErrorException e) {
             new Alert(Alert.AlertType.INFORMATION,

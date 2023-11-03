@@ -72,7 +72,7 @@ public class SignInClient implements Sign {
         MessageType mst;
         ObjectOutputStream oos = null;
         ObjectInputStream ois = null;
-       // ois = new ObjectInputStream(ois);
+        // ois = new ObjectInputStream(ois);
 
         try {
             //Enviamos el objecto encapsulado al servidor
@@ -88,7 +88,7 @@ public class SignInClient implements Sign {
             encapsu = (Encapsulator) ois.readObject();
             user = encapsu.getUser();
             //Declaramos una variable int, pues las enumeraciones devuelven valores int
-            int decision = encapsu.getMessage().ordinal();
+            //int decision = encapsu.getMessage().ordinal();
             oos.close();
             ois.close();
             sokCliente.close();
@@ -99,10 +99,14 @@ public class SignInClient implements Sign {
                     return user;
                 case USER_ALREADY_EXISTS_RESPONSE:
                     throw new UserAlreadyExistsException("The user already exists");
+                case USER_NOT_FOUND_RESPONSE:
+                    throw new UserNotFoundException("The user NO XISTIA");
                 case ERROR_RESPONSE:
                     throw new ServerErrorException("An error in the server has ocurred");
             }
 
+        } catch (UserNotFoundException ex) {
+            Logger.getLogger(SignInClient.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException | IOException ex) {
             Logger.getLogger(SignInClient.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -122,29 +126,33 @@ public class SignInClient implements Sign {
      */
     @Override
     public User getExecuteSignIn(User user) throws ServerErrorException, CredentialErrorException, UserNotFoundException {
-
         ObjectOutputStream oos = null;
         ObjectInputStream ois = null;
+        Socket sokCliente = null;
 
         try {
-            //Enviamos el objecto encapsulado al servidor
-            Socket sokCliente = new Socket(HOST, PUERTO);
+            // Establecer la conexión con el servidor
+            sokCliente = new Socket(HOST, PUERTO);
             oos = new ObjectOutputStream(sokCliente.getOutputStream());
+
+            // Enviamos el objeto encapsulado al servidor
             encapsu = new Encapsulator();
             encapsu.setUser(user);
             encapsu.setMessage(MessageType.SIGNIN_REQUEST);
             oos.writeObject(encapsu);
 
-            //Recibimos el objeto encapsulado del servidor
-            //ois = new ObjectInputStream(sokCliente.getInputStream());
+            // Recibimos el objeto encapsulado del servidor
+            ois = new ObjectInputStream(sokCliente.getInputStream());
             encapsu = (Encapsulator) ois.readObject();
             user = encapsu.getUser();
-            int decision = encapsu.getMessage().ordinal();
+            
+            //int decision = encapsu.getMessage().ordinal();
+            // Cerrar los flujos y la conexión
             oos.close();
             ois.close();
             sokCliente.close();
 
-            //Dependiendo de el mensaje que reciba lanza o escribe un mensaje nuevo
+            // Dependiendo del mensaje que reciba, lanza o escribe un mensaje nuevo
             switch (encapsu.getMessage()) {
                 case OK_RESPONSE:
                     return user;
@@ -154,8 +162,28 @@ public class SignInClient implements Sign {
                     throw new ServerErrorException("Ha ocurrido un error en el servidor");
             }
 
-        } catch (ClassNotFoundException | IOException ex) {
+        } catch (ClassNotFoundException ex) {
+            // Manejar la excepción de clase no encontrada al deserializar
             Logger.getLogger(SignInClient.class.getName()).log(Level.SEVERE, null, ex);
+            throw new ServerErrorException("Error al recibir datos del servidor");
+        } catch (IOException ex) {
+            // Manejar la excepción de E/S (por ejemplo, conexión fallida)
+            Logger.getLogger(SignInClient.class.getName()).log(Level.SEVERE, null, ex);
+            throw new ServerErrorException("Error de E/S al comunicarse con el servidor");
+        } finally {
+            try {
+                if (oos != null) {
+                    oos.close();
+                }
+                if (ois != null) {
+                    ois.close();
+                }
+                if (sokCliente != null && !sokCliente.isClosed()) {
+                    sokCliente.close();
+                }
+            } catch (IOException ex) {
+                Logger.getLogger(SignInClient.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         return user;
     }

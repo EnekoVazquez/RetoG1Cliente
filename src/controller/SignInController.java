@@ -67,7 +67,7 @@ public class SignInController {
     private PasswordField pswfPasswd;
 
     /**
-     * Botón para iniciar sesión. 
+     * Botón para iniciar sesión.
      */
     @FXML
     private Button btnLogin;
@@ -163,7 +163,7 @@ public class SignInController {
         //invocamos a la factoria
         ControllerFactory fact = new ControllerFactory();
         interf = fact.getSocket();
-        
+
     }
 
     /**
@@ -208,26 +208,29 @@ public class SignInController {
             user.setEmail(txtEmail.getText());
             user.setPassword(pswfPasswd.getText());
 
-            interf.getExecuteSignIn(user);
-
-            Stage PrincipalStage = new Stage();
+            user = interf.getExecuteSignIn(user);
+            
+            if(user.getNombre()!=null){
+                Stage PrincipalStage = new Stage();
             //cargar el fxml de la ventana de sign up utilizando un cargador no estatico
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/Principal.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/Principal.fxml"));
 
-            Parent root = (Parent) loader.load();
+                Parent root = (Parent) loader.load();
 
-            PrincipalController principalController = ((PrincipalController) loader.getController());
-
-            principalController.initStage(root, interf.getExecuteSignIn(user));
+                PrincipalController principalController = ((PrincipalController) loader.getController());
+            
+                principalController.initStage(root, user);
+            }else{
+                throw new ServerErrorException("La conexion a la base de datos no esta operativa.");
+            }
 
         } catch (FormatErrorException | EmptyTextFieldsException le) {
 
             new Alert(Alert.AlertType.INFORMATION, le.getMessage()).showAndWait();
 
-        } catch (UserNotFoundException e){
+        } catch (UserNotFoundException e) {
             new Alert(Alert.AlertType.INFORMATION, e.getMessage()).showAndWait();
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
 
             new Alert(Alert.AlertType.INFORMATION, e.getMessage()).showAndWait();
 
@@ -241,7 +244,6 @@ public class SignInController {
      * @param event Evento de acción que desencadena la navegación a la ventana
      * de registro.
      */
-
     @FXML
     private void handleSignUpButtonAction(ActionEvent event) {
 

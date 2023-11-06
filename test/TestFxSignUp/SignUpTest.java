@@ -1,14 +1,18 @@
 package TestFxSignUp;
 
 import application.Main;
+import java.util.Random;
 import java.util.concurrent.TimeoutException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.scene.Node;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.FixMethodOrder;
@@ -35,11 +39,13 @@ public class SignUpTest extends ApplicationTest {
     private PasswordField txtConfirmPasswd;
     private Button btnSave;
     private Button btnCancel;
+    private Alert alert;
 
     @BeforeClass
     public static void openWindow() throws TimeoutException {
         FxToolkit.registerPrimaryStage();
         FxToolkit.setupApplication(Main.class);
+
     }
 
     @Before
@@ -55,17 +61,13 @@ public class SignUpTest extends ApplicationTest {
         btnSave = lookup("#btnSave").query();
         btnCancel = lookup("#btnCancel").query();
         btnSignUp = lookup("#btnSignUp").query();
-        paneSignUp = lookup("#paneSignUp").query();
+
     }
 
     @Test
-    public void Test_windowIsOpen() {
-        verifyThat(paneSignUp, isVisible());
-    }
-
-    @Test
-    public void Test1_initialWindow() {
-        clickOn("#btnSignUp");
+    public void Test1_windowIsOpen() {
+        clickOn(btnSignUp);
+        verifyThat("#paneSignUp", isVisible());
     }
 
     @Test
@@ -84,7 +86,11 @@ public class SignUpTest extends ApplicationTest {
     public void Test3_emptyFields() {
         clickOn(btnSave);
 
+        // Utiliza la función verifyThat para verificar el contenido de la Alert
+        verifyThat("Campos no informados", Node::isVisible);
+
         clickOn("Aceptar");
+
     }
 
     @Test
@@ -95,16 +101,27 @@ public class SignUpTest extends ApplicationTest {
 
         clickOn(txtName);
         write("Pepe Garcia Fernandez");
+
         clickOn(txtPasswd);
         write("Garcia69");
+
         clickOn(txtConfirmPasswd);
         write("Garcia69");
+
         clickOn(btnSave);
+
+        // Utiliza la función verifyThat para verificar el contenido de la Alert
+        verifyThat("Formato de E-mail no valido", Node::isVisible);
+
         clickOn("Aceptar");
+
         txtEmail.clear();
+
         clickOn(txtEmail);
         write("pepe@gmail.com");
+
         txtPasswd.clear();
+
         txtConfirmPasswd.clear();
     }
 
@@ -112,11 +129,19 @@ public class SignUpTest extends ApplicationTest {
     public void Test5_passwordFormatError() {
         clickOn(txtPasswd);
         write("master1");
+
         clickOn(txtConfirmPasswd);
         write("master1");
+
         clickOn(btnSave);
+
+        // Utiliza la función verifyThat para verificar el contenido de la Alert
+        verifyThat("Formato de contrasenia no valida", Node::isVisible);
+
         clickOn("Aceptar");
+
         txtPasswd.clear();
+
         txtConfirmPasswd.clear();
     }
 
@@ -124,14 +149,24 @@ public class SignUpTest extends ApplicationTest {
     public void Test6_passwordMatchError() {
         clickOn(txtPasswd);
         write("Garcia69");
+
         clickOn(txtConfirmPasswd);
         write("Garcia60");
+
         clickOn(btnSave);
+
+        // Utiliza la función verifyThat para verificar el contenido de la Alert
+        verifyThat("Las contrasenias no son iguales", Node::isVisible);
+
         clickOn("Aceptar");
+
         txtPasswd.clear();
+
         txtConfirmPasswd.clear();
+
         clickOn(txtPasswd);
         write("Garcia69");
+
         clickOn(txtConfirmPasswd);
         write("Garcia69");
     }
@@ -140,27 +175,89 @@ public class SignUpTest extends ApplicationTest {
     public void Test7_ZipFormatError() {
         clickOn(txtCity);
         write("Madrid");
+
         clickOn(txtStreet);
         write("Calle la piedra");
+
         clickOn(txtZip);
         write("4789630");
+
         clickOn(phoneNumber);
         write("665912635");
+
         clickOn(btnSave);
+
+        // Utiliza la función verifyThat para verificar el contenido de la Alert
+        verifyThat("El zip no contiene el formato correcto", Node::isVisible);
+
         clickOn("Aceptar");
+
         txtZip.clear();
+
         clickOn(txtZip);
         write("47920");
+
         phoneNumber.clear();
     }
 
     @Test
     public void Test8_ZipFormatError() {
+
         clickOn(phoneNumber);
         write("6659126351021021002");
+
         clickOn(btnSave);
 
+        // Utiliza la función verifyThat para verificar el contenido de la Alert
+        verifyThat("El numero de telefono no tiene el formato correcto", Node::isVisible);
+
         clickOn("Aceptar");
+
+        txtEmail.clear();
+        txtName.clear();
+        txtPasswd.clear();
+        txtConfirmPasswd.clear();
+        txtCity.clear();
+        txtStreet.clear();
+        txtZip.clear();
+        phoneNumber.clear();
+    }
+
+    @Test
+    public void Test9_SignUpCorrect() {
+
+        String login = "pepe" + new Random().nextInt() + "@gmail.com";
+        clickOn(txtEmail);
+        write(login);
+
+        clickOn(txtName);
+        write("Pepe Garcia Fernandez");
+
+        clickOn(txtPasswd);
+        write("Garcia69");
+
+        clickOn(txtConfirmPasswd);
+        write("Garcia69");
+
+        clickOn(txtCity);
+        write("Madrid");
+
+        clickOn(txtStreet);
+        write("Calle la piedra");
+
+        clickOn(txtZip);
+        write("47896");
+
+        clickOn(phoneNumber);
+        write("665912635");
+
+        clickOn(btnSave);
+
+        // Utiliza la función verifyThat para verificar el contenido de la Alert
+        verifyThat("Usuario registrado", Node::isVisible);
+
+        clickOn("Aceptar");
+
         txtEmail.clear();
         txtName.clear();
         txtPasswd.clear();

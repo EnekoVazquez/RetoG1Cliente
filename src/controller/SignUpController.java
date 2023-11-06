@@ -126,8 +126,8 @@ public class SignUpController {
     @FXML
     protected static final Logger LOGGER = Logger.getLogger("SignUpController");
     /**
-    * Declaramos la interfaz
-    */
+     * Declaramos la interfaz
+     */
     private Sign interf;
 
     /**
@@ -151,7 +151,7 @@ public class SignUpController {
         //El título de la ventana es “Sign Up”.
         stage.setTitle("SIGN UP");
 
-        //Los TextField E-mail (id= txtEmail), name (id= txtName), city (id = txtCity), 
+        //Los TextField E-mail (id= txtEmail), name (id= txtName), city (id = txtCity),
         //Street (id=txtStreet), ZIP (id= txtZip), phone number (id= phoneNumber) están habilitados
         txtEmail.setDisable(false);
         txtName.setDisable(false);
@@ -166,7 +166,7 @@ public class SignUpController {
         //El botón cancel está habilitado.
         btnCancel.setDisable(false);
 
-        //Los PasswordField password (id = txtPasswd), 
+        //Los PasswordField password (id = txtPasswd),
         //confirmPassword (id= txtConfirmPasswd) están habilitados.
         txtPasswd.setDisable(false);
         txtConfirmPasswd.setDisable(false);
@@ -174,7 +174,7 @@ public class SignUpController {
         //El foco inicialmente estará en el campo de E-mail.
         txtEmail.requestFocus();
 
-        //Boton por defecto 
+        //Boton por defecto
         btnSave.setDefaultButton(true);
 
         //Metodo de los botones
@@ -183,11 +183,11 @@ public class SignUpController {
         btnCancel.setOnAction(this::handleButtonCancel);
 
         stage.show();
-        
+
         //Invocamos a la factoria
         ControllerFactory fact = new ControllerFactory();
         interf = fact.getSocket();
-        
+
     }
 
     /**
@@ -213,7 +213,7 @@ public class SignUpController {
                 throw new FormatErrorException("Formato de E-mail no valido");
             }
 
-            // Validar si la contraseña contiene mayúsculas, minúsculas y al menos un número, 
+            // Validar si la contraseña contiene mayúsculas, minúsculas y al menos un número,
             // la longitud de un mínimo de 8 dígitos.
             String passwd = this.txtPasswd.getText();
             String confPasswd = this.txtConfirmPasswd.getText();
@@ -224,6 +224,13 @@ public class SignUpController {
             if (!confPasswd.equals(passwd)) {
                 throw new FormatErrorException("Las contrasenias no son iguales");
             }
+            if (!txtZip.getText().isEmpty() && txtZip.getText().length() != 5) {
+                throw new FormatErrorException("El zip no contiene el formato correcto");
+            }
+
+            if (!phoneNumber.getText().isEmpty() && phoneNumber.getText().length() != 9) {
+                throw new FormatErrorException("El numero de telefono no tiene el formato correcto");
+            }
 
             User user = new User();
             user.setEmail(this.txtEmail.getText());
@@ -232,11 +239,10 @@ public class SignUpController {
             user.setCiudad(this.txtCity.getText());
             user.setDireccion(this.txtStreet.getText());
             user.setCodigoPostal(Integer.parseInt(this.txtZip.getText()));
-            user.setTelefono(Integer.parseInt(this.txtZip.getText()));
+            user.setTelefono(Integer.parseInt(this.phoneNumber.getText()));
             interf.getExecuteSignUp(user);
-            
-            new Alert(Alert.AlertType.INFORMATION, "Usuario registrado").showAndWait();
 
+            new Alert(Alert.AlertType.INFORMATION, "Usuario registrado").showAndWait();
 
         } catch (EmptyTextFieldsException | FormatErrorException e) {
             new Alert(Alert.AlertType.INFORMATION,

@@ -24,6 +24,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.ControllerFactory;
 import model.Sign;
+import exception.UserAlreadyExistsException;
 import model.User;
 
 /**
@@ -151,7 +152,7 @@ public class SignUpController {
         //El título de la ventana es “Sign Up”.
         stage.setTitle("SIGN UP");
 
-        //Los TextField E-mail (id= txtEmail), name (id= txtName), city (id = txtCity), 
+        //Los TextField E-mail (id= txtEmail), name (id= txtName), city (id = txtCity),
         //Street (id=txtStreet), ZIP (id= txtZip), phone number (id= phoneNumber) están habilitados
         txtEmail.setDisable(false);
         txtName.setDisable(false);
@@ -166,7 +167,7 @@ public class SignUpController {
         //El botón cancel está habilitado.
         btnCancel.setDisable(false);
 
-        //Los PasswordField password (id = txtPasswd), 
+        //Los PasswordField password (id = txtPasswd),
         //confirmPassword (id= txtConfirmPasswd) están habilitados.
         txtPasswd.setDisable(false);
         txtConfirmPasswd.setDisable(false);
@@ -174,7 +175,7 @@ public class SignUpController {
         //El foco inicialmente estará en el campo de E-mail.
         txtEmail.requestFocus();
 
-        //Boton por defecto 
+        //Boton por defecto
         btnSave.setDefaultButton(true);
 
         //Metodo de los botones
@@ -203,15 +204,6 @@ public class SignUpController {
             //Si no están informados alguno de los campos saldrá un mensaje de error.
             if (this.txtEmail.getText().trim().isEmpty() || this.txtName.getText().trim().isEmpty()
                     || this.txtPasswd.getText().trim().isEmpty() || this.txtConfirmPasswd.getText().trim().isEmpty()) {
-                //Esta parte de aqui hemos estimado retirarla ya que hemos notado que es una mala practica y poco usable pese a que funcione y estuviera en el diseño
-                //txtEmail.setText("");
-                //txtName.setText("");
-                //txtPasswd.setText("");
-                //txtConfirmPasswd.setText("");
-                //txtStreet.setText("");
-                //txtCity.setText("");
-                //txtZip.setText("");
-                //phoneNumber.setText("");
                 throw new EmptyTextFieldsException("Campos no informados");
             }
 
@@ -222,7 +214,7 @@ public class SignUpController {
                 throw new FormatErrorException("Formato de E-mail no valido");
             }
 
-            // Validar si la contraseña contiene mayúsculas, minúsculas y al menos un número, 
+            // Validar si la contraseña contiene mayúsculas, minúsculas y al menos un número,
             // la longitud de un mínimo de 8 dígitos.
             String passwd = this.txtPasswd.getText();
             String confPasswd = this.txtConfirmPasswd.getText();
@@ -250,11 +242,12 @@ public class SignUpController {
             if (!phoneNumber.getText().isEmpty()) {
                 user.setTelefono(Integer.parseInt(phoneNumber.getText()));
             }
-
-            interf.getExecuteSignUp(user);
+            
+            user = interf.getExecuteSignUp(user);
+           
             new Alert(Alert.AlertType.INFORMATION, "Usuario registrado").showAndWait();
 
-        } catch (EmptyTextFieldsException | FormatErrorException e) {
+        } catch (EmptyTextFieldsException | FormatErrorException | UserAlreadyExistsException e) {
             new Alert(Alert.AlertType.INFORMATION,
                     e.getMessage()).showAndWait();
 

@@ -98,11 +98,11 @@ public class SignInClient implements Sign {
                 case OK_RESPONSE:
                     return user;
                 case USER_ALREADY_EXISTS_RESPONSE:
-                    throw new UserAlreadyExistsException("The user already exists");
+                    throw new UserAlreadyExistsException("El usuario ya existe");
                 case USER_NOT_FOUND_RESPONSE:
-                    throw new UserNotFoundException("The user NO XISTIA");
+                    throw new UserNotFoundException("Ese usuario no existe");
                 case ERROR_RESPONSE:
-                    throw new ServerErrorException("An error in the server has ocurred");
+                    throw new ServerErrorException("Ha ocurrido un error en el servidor");
             }
 
         } catch (UserNotFoundException ex) {

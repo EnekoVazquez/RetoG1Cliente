@@ -209,18 +209,18 @@ public class SignInController {
             user.setPassword(pswfPasswd.getText());
 
             user = interf.getExecuteSignIn(user);
-            
-            if(user.getNombre()!=null){
+
+            if (user.getNombre() != null) {
                 Stage PrincipalStage = new Stage();
-            //cargar el fxml de la ventana de sign up utilizando un cargador no estatico
+                //cargar el fxml de la ventana de sign up utilizando un cargador no estatico
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/Principal.fxml"));
 
                 Parent root = (Parent) loader.load();
 
                 PrincipalController principalController = ((PrincipalController) loader.getController());
-            
+
                 principalController.initStage(root, user);
-            }else{
+            } else {
                 throw new ServerErrorException("La conexion a la base de datos no esta operativa.");
             }
 

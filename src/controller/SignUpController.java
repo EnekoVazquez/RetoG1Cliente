@@ -29,7 +29,7 @@ import model.User;
 
 /**
  *
- * @author Eneko y Egoitz.josu como colaborador
+ * @author Eneko y Egoitz.josu como colaborador.
  */
 public class SignUpController {
     //Declaramos los campos que utilizaremos en esta ventana

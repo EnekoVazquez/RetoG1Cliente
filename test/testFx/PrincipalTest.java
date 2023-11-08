@@ -7,7 +7,7 @@ package testFx;
 
 /**
  *
- * @author 2dam
+ * @author egoitz
  */
 import application.Main;
 import java.util.Random;

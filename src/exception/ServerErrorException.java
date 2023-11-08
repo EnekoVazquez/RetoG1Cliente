@@ -7,7 +7,7 @@ package exception;
 
 /**
  *
- * @author Eneko.
+ * @author Eneko..
  */
 public class ServerErrorException extends Exception {
 

@@ -23,7 +23,7 @@ import model.User;
 
 /**
  *
- * @author Eneko y Egoitz.
+ * @author Eneko y Egoitz..
  */
 public class PrincipalController {
     

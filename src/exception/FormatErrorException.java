@@ -7,7 +7,7 @@ package exception;
 
 /**
  *
- * @author Egitz
+ * @author Egitz.
  */
 public class FormatErrorException extends Exception{
     

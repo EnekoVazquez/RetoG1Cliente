@@ -13,7 +13,7 @@ import javafx.stage.Stage;
  * La aplicación inicia la interfaz de inicio de sesión al cargar el archivo FXML y crear una instancia
  * del controlador `SignInController`.
  *
- * @author Josu
+ * @author Josu.
  */
 public class Main extends Application {
 

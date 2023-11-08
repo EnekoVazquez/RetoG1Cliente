@@ -33,7 +33,7 @@ import org.testfx.matcher.control.TextInputControlMatchers;
  * Esta clase contiene pruebas unitarias para la funcionalidad del controlador de inicio de sesión (SignInController).
  * Las pruebas se realizan utilizando el marco de pruebas TestFX.
  *
- * @author Josu
+ * @author Josu.
  */
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class SignInControllerTest extends ApplicationTest {

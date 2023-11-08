@@ -38,7 +38,7 @@ import model.User;
  * de credenciales y la navegación a otras ventanas relacionadas con el inicio
  * de sesión.
  *
- * @author Josu
+ * @author Josu.
  */
 public class SignInController {
 

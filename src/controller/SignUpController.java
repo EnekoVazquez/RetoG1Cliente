@@ -236,11 +236,12 @@ public class SignUpController {
             if (!txtStreet.getText().isEmpty()) {
                 user.setDireccion(txtStreet.getText());
             }
-            if (!txtZip.getText().isEmpty()) {
-                user.setCodigoPostal(Integer.parseInt(txtZip.getText()));
+            if (!txtZip.getText().isEmpty() && txtZip.getText().length() != 5) {
+                throw new FormatErrorException("El zip no contiene el formato correcto");
             }
-            if (!phoneNumber.getText().isEmpty()) {
-                user.setTelefono(Integer.parseInt(phoneNumber.getText()));
+
+            if (!phoneNumber.getText().isEmpty() && phoneNumber.getText().length() != 9) {
+                throw new FormatErrorException("El numero de telefono no tiene el formato correcto");
             }
             
             user = interf.getExecuteSignUp(user);

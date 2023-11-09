@@ -10,6 +10,7 @@ package testFx;
  * @author 2dam.
  */
 import application.Main;
+import application.MainTest;
 import java.util.Random;
 import java.util.concurrent.TimeoutException;
 import java.util.logging.Level;
@@ -25,6 +26,7 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.FixMethodOrder;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
 import org.testfx.api.FxToolkit;
@@ -53,7 +55,7 @@ public class SignUpTest extends ApplicationTest {
     @BeforeClass
     public static void openWindow() throws TimeoutException {
         FxToolkit.registerPrimaryStage();
-        FxToolkit.setupApplication(Main.class);
+        FxToolkit.setupApplication(MainTest.class);
 
     }
 
@@ -75,12 +77,12 @@ public class SignUpTest extends ApplicationTest {
 
     @Test
     public void Test1_windowIsOpen() {
-        clickOn(btnSignUp);
+        //clickOn(btnSignUp);
         verifyThat("#paneSignUp", isVisible());
     }
 
     @Test
-    public void Test2_verifyEmptyFields() {
+    public void Test4_verifyEmptyFields() {
         verifyThat(txtEmail, hasText(""));
         verifyThat(txtName, hasText(""));
         verifyThat(txtCity, hasText(""));
@@ -92,7 +94,7 @@ public class SignUpTest extends ApplicationTest {
     }
 
     @Test
-    public void Test3_emptyFields() {
+    public void Test5_emptyFields() {
         clickOn(btnSave);
 
         // Utiliza la función verifyThat para verificar el contenido de la Alert
@@ -103,7 +105,7 @@ public class SignUpTest extends ApplicationTest {
     }
 
     @Test
-    public void Test4_emailFormatError() {
+    public void Test6_emailFormatError() {
 
         clickOn(txtEmail);
         write("pepegmail@.c");
@@ -135,7 +137,7 @@ public class SignUpTest extends ApplicationTest {
     }
 
     @Test
-    public void Test5_passwordFormatError() {
+    public void Test7_passwordFormatError() {
         clickOn(txtPasswd);
         write("master1");
 
@@ -155,7 +157,7 @@ public class SignUpTest extends ApplicationTest {
     }
 
     @Test
-    public void Test6_passwordMatchError() {
+    public void Test8_passwordMatchError() {
         clickOn(txtPasswd);
         write("Garcia69");
 
@@ -181,7 +183,7 @@ public class SignUpTest extends ApplicationTest {
     }
 
     @Test
-    public void Test7_ZipFormatError() {
+    public void Test9_ZipFormatError() {
         clickOn(txtCity);
         write("Madrid");
 
@@ -210,7 +212,7 @@ public class SignUpTest extends ApplicationTest {
     }
 
     @Test
-    public void Test8_ZipFormatError() {
+    public void TestA_phoneFormatError() {
 
         clickOn(phoneNumber);
         write("6659126351021021002");
@@ -233,7 +235,51 @@ public class SignUpTest extends ApplicationTest {
     }
 
     @Test
-    public void Test9_SignUpCorrect() {
+    public void Test3_EmailExistsUpCorrect() {
+
+        clickOn(txtEmail);
+        write("patata@gmail.com");
+
+        clickOn(txtName);
+        write("mr potato");
+
+        clickOn(txtPasswd);
+        write("Abcd*1234");
+
+        clickOn(txtConfirmPasswd);
+        write("Abcd*1234");
+
+        clickOn(txtCity);
+        write("Madrid");
+
+        clickOn(txtStreet);
+        write("Calle la piedra");
+
+        clickOn(txtZip);
+        write("47896");
+
+        clickOn(phoneNumber);
+        write("665912635");
+
+        clickOn(btnSave);
+
+        // Utiliza la función verifyThat para verificar el contenido de la Alert
+        verifyThat("El usuario ya existe", Node::isVisible);
+
+        clickOn("Aceptar");
+
+        txtEmail.clear();
+        txtName.clear();
+        txtPasswd.clear();
+        txtConfirmPasswd.clear();
+        txtCity.clear();
+        txtStreet.clear();
+        txtZip.clear();
+        phoneNumber.clear();
+    }
+
+    @Test
+    public void Test2_SignUpCorrect() {
 
         String login = "pepe" + new Random().nextInt() + "@gmail.com";
         clickOn(txtEmail);

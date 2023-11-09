@@ -145,7 +145,7 @@ public class SignInClient implements Sign {
             ois = new ObjectInputStream(sokCliente.getInputStream());
             encapsu = (Encapsulator) ois.readObject();
             user = encapsu.getUser();
-            
+
             //int decision = encapsu.getMessage().ordinal();
             // Cerrar los flujos y la conexión
             oos.close();

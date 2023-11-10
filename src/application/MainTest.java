@@ -35,7 +35,7 @@ public class MainTest extends Application {
         // Obtener una referencia al controlador de inicio de sesión.
         SignUpController signUp = ((SignUpController) loader.getController());
 
-        // Establecer el escenario principal en el controlador y inicializar la ventana de inicio de sesión.
+        // Establecer el escenario principal en el controlador y inicializar la ventana de registro.
         signUp.setStage(stage);
         signUp.initStage(root);
     }

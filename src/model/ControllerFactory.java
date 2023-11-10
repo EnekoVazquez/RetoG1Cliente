@@ -1,16 +1,24 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * Clase que representa una fábrica de controladores en el sistema de firma electrónica.
+ * Esta fábrica proporciona instancias de controladores para la gestión de la comunicación con el cliente.
+ * Actualmente, devuelve una instancia de SignInClient como controlador para las solicitudes de conexión con el cliente.
+ *
+ * @author Eneko, Egoitz y Josu
+ * @version 1.0
  */
 package model;
 
 /**
- *
- * @author Eneko..
+ * Fábrica de controladores para la gestión de la comunicación con el cliente.
  */
 public class ControllerFactory {
 
+    /**
+     * Método que devuelve una instancia del controlador para la gestión de la
+     * comunicación con el cliente.
+     *
+     * @return Instancia del controlador de tipo Sign.
+     */
     public Sign getSocket() {
         Sign sign;
         sign = new SignInClient();

@@ -7,21 +7,21 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #DCDCDC;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<Pane id="panePrincipal" fx:id="panePrincipal" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #DCDCDC;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.PrincipalController">
    <children>
-      <Button layoutX="377.0" layoutY="414.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="142.0" style="-fx-background-color: #64FEBA;" text="Exit">
+      <Button fx:id="btnExit" layoutX="377.0" layoutY="414.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="142.0" style="-fx-background-color: #64FEBA;" text="Exit">
          <font>
             <Font size="21.0" />
          </font>
       </Button>
-      <Label layoutX="153.0" layoutY="110.0" text="Has entrado correctamente ">
+      <Label fx:id="lblTexto" layoutX="30.0" layoutY="109.0" text="Has entrado correctamente ">
          <font>
             <Font size="48.0" />
          </font>
       </Label>
-      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="375.0" layoutY="225.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="pngDedo" fitHeight="150.0" fitWidth="200.0" layoutX="375.0" layoutY="225.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../Downloads/889221.png" />
+            <Image url="@../picture/dedo.png" />
          </image>
       </ImageView>
    </children>

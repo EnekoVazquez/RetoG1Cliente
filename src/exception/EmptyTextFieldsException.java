@@ -7,7 +7,7 @@ package exception;
 
 /**
  *
- * @author Egoitz. 
+ * @author Egoitz. .
  */
 public class EmptyTextFieldsException extends Exception{
     

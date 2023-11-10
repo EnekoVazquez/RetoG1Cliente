@@ -7,67 +7,62 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane id="lblError2" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #DCDCDC;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<Pane id="paneSignUp" fx:id="panSignUp" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #DCDCDC;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.SignUpController">
    <children>
-      <TextField id="txtEmail" layoutX="9.0" layoutY="194.0" prefHeight="42.0" prefWidth="375.0" promptText="E-mail">
-         <font>
-            <Font size="19.0" />
-         </font>
-      </TextField>
       <Label layoutX="384.0" layoutY="103.0" prefHeight="71.0" prefWidth="132.0" text="Sign Up">
          <font>
             <Font size="36.0" />
          </font>
       </Label>
-      <Button id="btnSave" layoutX="183.0" layoutY="514.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="142.0" style="-fx-background-color: #64FEBA;" text="Save">
-         <font>
-            <Font size="21.0" />
-         </font>
-      </Button>
-      <Button id="btnCancel" layoutX="575.0" layoutY="514.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="142.0" style="-fx-background-color: #64FEBA;" text="Cancel">
-         <font>
-            <Font size="21.0" />
-         </font>
-      </Button>
-      <TextField id="txtName" layoutX="9.0" layoutY="249.0" prefHeight="42.0" prefWidth="375.0" promptText="Name">
+      <TextField id="txtEmail" fx:id="txtEmail" layoutX="9.0" layoutY="194.0" prefHeight="42.0" prefWidth="375.0" promptText="E-mail">
          <font>
             <Font size="19.0" />
          </font>
       </TextField>
-      <TextField id="txtPasswd" layoutX="516.0" layoutY="364.0" prefHeight="42.0" prefWidth="375.0" promptText="Phone Number">
+      <TextField id="txtName" fx:id="txtName" layoutX="9.0" layoutY="249.0" prefHeight="42.0" prefWidth="375.0" promptText="Fullname">
          <font>
             <Font size="19.0" />
          </font>
       </TextField>
-      <TextField id="txtCity" layoutX="516.0" layoutY="194.0" prefHeight="42.0" prefWidth="375.0" promptText="City">
-         <font>
-            <Font size="19.0" />
-         </font>
-      </TextField>
-      <PasswordField id="txtPasswd" layoutX="9.0" layoutY="305.0" prefHeight="42.0" prefWidth="375.0" promptText="Password">
+      <PasswordField id="txtPasswd" fx:id="txtPasswd" layoutX="9.0" layoutY="305.0" prefHeight="42.0" prefWidth="375.0" promptText="Password">
          <font>
             <Font size="19.0" />
          </font>
       </PasswordField>
-      <PasswordField id="txtConfirmPasswd" layoutX="9.0" layoutY="364.0" prefHeight="42.0" prefWidth="375.0" promptText="Confirm Password">
+      <PasswordField id="txtConfirmPasswd" fx:id="txtConfirmPasswd" layoutX="9.0" layoutY="364.0" prefHeight="42.0" prefWidth="375.0" promptText="Confirm Password">
          <font>
             <Font size="19.0" />
          </font>
       </PasswordField>
-      <TextField id="txtStreet" layoutX="516.0" layoutY="249.0" prefHeight="42.0" prefWidth="375.0" promptText="Street">
+      <TextField id="txtCity" fx:id="txtCity" layoutX="516.0" layoutY="194.0" prefHeight="42.0" prefWidth="375.0" promptText="City (Optional)">
          <font>
             <Font size="19.0" />
          </font>
       </TextField>
-      <TextField id="txtCity" layoutX="516.0" layoutY="305.0" prefHeight="42.0" prefWidth="375.0" promptText="ZIP">
+      <TextField id="txtStreet" fx:id="txtStreet" layoutX="516.0" layoutY="249.0" prefHeight="42.0" prefWidth="375.0" promptText="Street (Optional)">
          <font>
             <Font size="19.0" />
          </font>
       </TextField>
-      <Label layoutX="263.0" layoutY="430.0" prefHeight="42.0" prefWidth="375.0" text="ERROR" textFill="#f20000" visible="false">
+      <TextField id="txtZip" fx:id="txtZip" layoutX="516.0" layoutY="305.0" prefHeight="42.0" prefWidth="375.0" promptText="ZIP (Optional)">
          <font>
-            <Font size="36.0" />
+            <Font size="19.0" />
          </font>
-      </Label>
+      </TextField>
+      <TextField id="phoneNumber" fx:id="phoneNumber" layoutX="516.0" layoutY="364.0" prefHeight="42.0" prefWidth="375.0" promptText="Phone Number (Optional)">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </TextField>
+      <Button id="btnSave" fx:id="btnSave" layoutX="183.0" layoutY="514.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="142.0" style="-fx-background-color: #64FEBA;" text="Save">
+         <font>
+            <Font size="21.0" />
+         </font>
+      </Button>
+      <Button id="btnCancel" fx:id="btnCancel" layoutX="575.0" layoutY="514.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="142.0" style="-fx-background-color: #64FEBA;" text="Cancel">
+         <font>
+            <Font size="21.0" />
+         </font>
+      </Button>
    </children>
 </Pane>

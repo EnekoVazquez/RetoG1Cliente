@@ -1,6 +1,7 @@
 package application;
 
 import controller.SignInController;
+import controller.SignUpController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -9,32 +10,34 @@ import javafx.stage.Stage;
 
 /**
  * Clase principal de la aplicación que inicia la interfaz de inicio de sesión.
- * Esta clase extiende `Application`, que es la clase base de JavaFX para aplicaciones gráficas.
- * La aplicación inicia la interfaz de inicio de sesión al cargar el archivo FXML y crear una instancia
- * del controlador `SignInController`.
+ * Esta clase extiende `Application`, que es la clase base de JavaFX para
+ * aplicaciones gráficas. La aplicación inicia la interfaz de inicio de sesión
+ * al cargar el archivo FXML y crear una instancia del controlador
+ * `SignInController`.
  *
  * @author Josu.
  */
-public class Main extends Application {
+public class MainTest extends Application {
 
     /**
      * Método principal que inicia la aplicación.
      *
      * @param stage El escenario principal de la aplicación.
-     * @throws Exception Se lanza una excepción si ocurre algún error durante la inicialización.
+     * @throws Exception Se lanza una excepción si ocurre algún error durante la
+     * inicialización.
      */
     @Override
     public void start(Stage stage) throws Exception {
         // Cargar el archivo FXML de la interfaz de inicio de sesión.
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/SignIn.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/SignUp.fxml"));
         Parent root = (Parent) loader.load();
-        
+
         // Obtener una referencia al controlador de inicio de sesión.
-        SignInController signIn = ((SignInController) loader.getController());
-        
-        // Establecer el escenario principal en el controlador y inicializar la ventana de inicio de sesión.
-        signIn.setStage(stage);
-        signIn.initStage(root);
+        SignUpController signUp = ((SignUpController) loader.getController());
+
+        // Establecer el escenario principal en el controlador y inicializar la ventana de registro.
+        signUp.setStage(stage);
+        signUp.initStage(root);
     }
 
     /**

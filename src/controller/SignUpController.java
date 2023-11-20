@@ -243,11 +243,15 @@ public class SignUpController {
             if (!phoneNumber.getText().isEmpty() && phoneNumber.getText().length() != 9) {
                 throw new FormatErrorException("El numero de telefono no tiene el formato correcto");
             }
-            
-            user = interf.getExecuteSignUp(user);
-           
-            new Alert(Alert.AlertType.INFORMATION, "Usuario registrado").showAndWait();
 
+            user = interf.getExecuteSignUp(user);
+
+            new Alert(Alert.AlertType.INFORMATION, "Usuario registrado").showAndWait();
+            
+            //para cerrar la ventana despues del registro.
+            stage.close(); 
+            
+            
         } catch (EmptyTextFieldsException | FormatErrorException | UserAlreadyExistsException e) {
             new Alert(Alert.AlertType.INFORMATION,
                     e.getMessage()).showAndWait();

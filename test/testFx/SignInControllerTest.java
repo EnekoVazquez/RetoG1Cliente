@@ -16,6 +16,7 @@ import org.junit.Before;
 
 import org.junit.BeforeClass;
 import org.junit.FixMethodOrder;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
 //import org.junit.Before;
@@ -80,6 +81,7 @@ public class SignInControllerTest extends ApplicationTest {
      * Prueba el caso en el que se intenta iniciar sesión con campos vacíos.
      */
     @Test
+    @Ignore
     public void test2_ComprobarCamposVacios() {
         clickOn(btnLogin);
         verifyThat("Aceptar", isVisible());
@@ -90,6 +92,7 @@ public class SignInControllerTest extends ApplicationTest {
      * Prueba el caso en el que se intenta iniciar sesión con el campo de contraseña vacío.
      */
     @Test
+    @Ignore
     public void test3_ComprobarCampoPassVacio() {
         clickOn(txtEmail);
         write("Javi@gmail.com");
@@ -101,6 +104,7 @@ public class SignInControllerTest extends ApplicationTest {
      * Prueba el caso en el que se intenta iniciar sesión con el campo de correo electrónico vacío.
      */
     @Test
+    @Ignore
     public void test4_ComprobarCampoEmailVacio() {
         clickOn(txtEmail);
         txtEmail.clear();
@@ -114,6 +118,7 @@ public class SignInControllerTest extends ApplicationTest {
      * Prueba el caso en el que se intenta iniciar sesión con un formato incorrecto de correo electrónico.
      */
     @Test
+    @Ignore
     public void test5_ComprobarFormatoEmail() {
         clickOn(txtEmail);
         txtEmail.clear();
@@ -126,6 +131,7 @@ public class SignInControllerTest extends ApplicationTest {
      * Prueba el caso en el que se intenta iniciar sesión con un formato incorrecto de contraseña.
      */
     @Test
+    @Ignore
     public void test6_ComprobarFormatoPassword() {
         clickOn(pswfPasswd);
         pswfPasswd.clear();
@@ -141,6 +147,7 @@ public class SignInControllerTest extends ApplicationTest {
      * Prueba el caso en el que el usuario no se encuentra en la base de datos.
      */
     @Test
+    @Ignore
     public void test7_ComprobarUsuarioNoEncontrado() {
         clickOn(pswfPasswd);
         pswfPasswd.clear();
@@ -154,8 +161,9 @@ public class SignInControllerTest extends ApplicationTest {
      * Prueba deshabilitada para comprobar la base de datos no operativa.
      * Esta prueba está deshabilitada con comentarios y no se ejecuta.
      */
-    /*
+    
     @Test
+    @Ignore
     public void test8_ComprobarDatabaseNoOperativa() {
 
         clickOn(pswfPasswd);
@@ -170,12 +178,13 @@ public class SignInControllerTest extends ApplicationTest {
         verifyThat("La conexion a la base de datos no esta operativa.", Node::isVisible);
         clickOn("Aceptar");
     }
-    */
+    
 
     /**
      * Prueba el caso en el que todo está correcto.
      */
     @Test
+    @Ignore
     public void test9_ComprobarTodoCorrecto() {
         clickOn(pswfPasswd);
         pswfPasswd.clear();

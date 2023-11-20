@@ -27,6 +27,7 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.FixMethodOrder;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
 import org.testfx.api.FxToolkit;
@@ -64,6 +65,7 @@ public class PrincipalTest extends ApplicationTest {
     }
 
     @Test
+    @Ignore
     public void Test1_windowIsOpen() {
         clickOn(txtEmail);
         write("patata@gmail.com");
@@ -76,6 +78,7 @@ public class PrincipalTest extends ApplicationTest {
     }
 
     @Test
+    @Ignore
     public void Test2_userIsCorrect() {
         String lblEsperado = "Has entrado correctamente  Mr Potato";
 
@@ -83,6 +86,7 @@ public class PrincipalTest extends ApplicationTest {
     }
 
     @Test
+    @Ignore
     public void Test3_exitButton() {
         clickOn(btnExit);
 

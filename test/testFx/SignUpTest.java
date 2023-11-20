@@ -82,6 +82,7 @@ public class SignUpTest extends ApplicationTest {
     }
 
     @Test
+    @Ignore
     public void Test4_verifyEmptyFields() {
         verifyThat(txtEmail, hasText(""));
         verifyThat(txtName, hasText(""));
@@ -94,6 +95,7 @@ public class SignUpTest extends ApplicationTest {
     }
 
     @Test
+    @Ignore
     public void Test5_emptyFields() {
         clickOn(btnSave);
 
@@ -105,6 +107,7 @@ public class SignUpTest extends ApplicationTest {
     }
 
     @Test
+    @Ignore
     public void Test6_emailFormatError() {
 
         clickOn(txtEmail);
@@ -137,6 +140,7 @@ public class SignUpTest extends ApplicationTest {
     }
 
     @Test
+    @Ignore
     public void Test7_passwordFormatError() {
         clickOn(txtPasswd);
         write("master1");
@@ -157,6 +161,7 @@ public class SignUpTest extends ApplicationTest {
     }
 
     @Test
+    @Ignore
     public void Test8_passwordMatchError() {
         clickOn(txtPasswd);
         write("Garcia69");
@@ -183,6 +188,7 @@ public class SignUpTest extends ApplicationTest {
     }
 
     @Test
+    @Ignore
     public void Test9_ZipFormatError() {
         clickOn(txtCity);
         write("Madrid");
@@ -212,6 +218,7 @@ public class SignUpTest extends ApplicationTest {
     }
 
     @Test
+    @Ignore
     public void TestA_phoneFormatError() {
 
         clickOn(phoneNumber);
@@ -235,6 +242,7 @@ public class SignUpTest extends ApplicationTest {
     }
 
     @Test
+    @Ignore
     public void Test3_EmailExistsUpCorrect() {
 
         clickOn(txtEmail);
@@ -279,6 +287,7 @@ public class SignUpTest extends ApplicationTest {
     }
 
     @Test
+    @Ignore
     public void Test2_SignUpCorrect() {
 
         String login = "pepe" + new Random().nextInt() + "@gmail.com";

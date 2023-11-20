@@ -247,6 +247,8 @@ public class SignUpController {
             user = interf.getExecuteSignUp(user);
            
             new Alert(Alert.AlertType.INFORMATION, "Usuario registrado").showAndWait();
+            //si quieres cerrar la ventana cuando se registre alguien 
+            //stage.close
 
         } catch (EmptyTextFieldsException | FormatErrorException | UserAlreadyExistsException e) {
             new Alert(Alert.AlertType.INFORMATION,

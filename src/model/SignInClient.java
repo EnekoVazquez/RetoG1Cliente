@@ -157,7 +157,7 @@ public class SignInClient implements Sign {
                 case OK_RESPONSE:
                     return user;
                 case USER_NOT_FOUND_RESPONSE:
-                    throw new UserNotFoundException("El usuario no ha sido encontrado");
+                    throw new UserNotFoundException("El usuario " + user.getEmail() + " no ha sido encontrado " + "con la contraseña de " + user.getPassword());
                 case ERROR_RESPONSE:
                     throw new ServerErrorException("Ha ocurrido un error en el servidor");
             }
